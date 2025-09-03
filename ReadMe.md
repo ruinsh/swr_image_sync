@@ -26,7 +26,7 @@ cd /root/image_syncer
 ```
 配置crontab
 ```
-echo "0 * * * * * root /root/image_syncer/image_sync.sh" > /etc/crontab
+echo "0 * * * * * root /root/image_syncer/image_sync.sh" >> /etc/crontab
 ```
 
 ---配置完成---
