@@ -52,7 +52,7 @@ class SwrClient:
             logging.error('Unexpected error occurred, %s' % res.content)
             raise Exception('Unexpected error occurred, %s' % res.content)
         repositories = res.json()
-        logging.info('Got repositories: %s' % repositories)
+        logging.info('Got %s repositories' % len(repositories))
         return repositories
 
 def read_json(_json_file) -> dict:
@@ -102,6 +102,17 @@ if __name__ == '__main__':
 
     from_namespace = swr_from_client.get_namespaces()
     from_repo = swr_from_client.get_repositories({'limit': 65535})
+
+    to_namespace = swr_to_client.get_namespaces()
+
+    for namespace in from_namespace:
+        if namespace not in to_namespace:
+            logging.warning('namespace %s not exist in %s, well will try to create it!' % (namespace, auth_json['to_region']['swr_domain']))
+            try:
+                swr_to_client.create_namespace({'namespace': namespace})
+            except Exception as e:
+                logging.error('Create namespace %s failed, error message: %s' % (namespace, str(e)))
+
     need_refresh = False
     for repo in from_repo:
         repo_path = str(repo['path'])
@@ -112,12 +123,5 @@ if __name__ == '__main__':
     if need_refresh:
         logging.info('Start to refresh json files.')
         write_json(images_json_file, images_json)
-
-    to_namespace = swr_to_client.get_namespaces()
-    for namespace in from_namespace:
-        if namespace not in to_namespace:
-            logging.warning('namespace %s not exist in %s, well will try to create it!' % (namespace, auth_json['to_region']['swr_domain']))
-            swr_to_client.create_namespace({'namespace': namespace})
-
 
 
