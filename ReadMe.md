@@ -1,4 +1,5 @@
 # 定时同步前置操作
+将image-syncer的最新工具、本仓库的images_sync.sh传到执行机
 ```
 mkdir - p /root/image_syncer
 # 复制image-syncer 到image_syncer目录
@@ -27,7 +28,7 @@ cd /root/image_syncer
 ```
 配置crontab
 ```
-echo "0 * * * * * root /bin/bash /root/image_syncer/image_sync.sh" >> /etc/crontab
+echo "0-59 * * * *  root /bin/bash /root/image_syncer/image_sync.sh" >> /etc/crontab
 ```
 
 ---配置完成---
