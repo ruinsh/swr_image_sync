@@ -3,6 +3,7 @@
 mkdir - p /root/image_syncer
 # 复制image-syncer 到image_syncer目录
 cp image-syncer /root/image_syncer
+cp image_sync.sh /root/image_syncer
 cd /root/image_syncer
 ```
 新建auth.json，内容参考
@@ -26,7 +27,7 @@ cd /root/image_syncer
 ```
 配置crontab
 ```
-echo "0 * * * * * root /root/image_syncer/image_sync.sh" >> /etc/crontab
+echo "0 * * * * * root /bin/bash /root/image_syncer/image_sync.sh" >> /etc/crontab
 ```
 
 ---配置完成---
