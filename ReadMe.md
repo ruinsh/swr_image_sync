@@ -1,6 +1,7 @@
 # 定时同步前置操作
-将image-syncer的最新工具，链接：https://github.com/AliyunContainerService/image-syncer/releases，版本选择image-syncer: v1.5.5，
-下载本仓库的images_sync.sh传到执行机
+将image-syncer的最新工具，链接：https://github.com/AliyunContainerService/image-syncer/releases
+版本选择image-syncer: v1.5.5，
+同时下载本仓库的images_sync.sh传到执行机
 ```
 mkdir - p /root/image_syncer
 # 复制image-syncer 到image_syncer目录
