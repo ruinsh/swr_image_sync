@@ -1,5 +1,6 @@
 # 定时同步前置操作
-将image-syncer的最新工具、本仓库的images_sync.sh传到执行机
+将image-syncer的最新工具[https://github.com/AliyunContainerService/image-syncer/releases]，
+下载本仓库的images_sync.sh传到执行机
 ```
 mkdir - p /root/image_syncer
 # 复制image-syncer 到image_syncer目录
@@ -7,16 +8,18 @@ cp image-syncer /root/image_syncer
 cp image_sync.sh /root/image_syncer
 cd /root/image_syncer
 ```
-新建auth.json，内容参考
+新建auth.json，内容参考以下配置；swr.cn-north-4.myhuaweicloud.com是镜像仓库的域名，insecure参数是为了应对服务端无商用证书问题。
 ```
 {
   "swr.cn-north-4.myhuaweicloud.com": {
     "username": "长期登录指令-u后面的一串内容",
     "password": "长期登录指令-p后面的一串内容"
+    "insecure": true
   },
   "swr.cn-south-4.myhuaweicloud.com": {
     "username": "长期登录指令-u后面的一串内容",
-    "password": "长期登录指令-p后面的一串内容"
+    "password": "长期登录指令-p后面的一串内容",
+    "insecure": true
   }
 }
 ```
